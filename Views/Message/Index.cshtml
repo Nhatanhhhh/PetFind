@@ -1,0 +1,116 @@
+@model IEnumerable<PetStore.Models.DTOs.ConversationDTO>
+@{
+    ViewData["Title"] = "Tin nhắn";
+}
+
+<style>
+    .avatar-circle {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .avatar-text {
+        text-transform: uppercase;
+    }
+
+    .list-group-item:hover {
+        background-color: #f8f9fa;
+        transition: background-color 0.2s ease;
+    }
+
+    .card {
+        border: none;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        border-radius: 0.5rem;
+    }
+
+    .card-header {
+        border-radius: 0.5rem 0.5rem 0 0 !important;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-comments me-2"></i>
+                        Tin nhắn của tôi
+                    </h4>
+                </div>
+                <div class="card-body p-0">
+                    @if (!Model.Any())
+                    {
+                        <div class="text-center py-5">
+                            <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                            <h5 class="text-muted">Chưa có tin nhắn nào</h5>
+                            <p class="text-muted">Bạn sẽ thấy các cuộc trò chuyện ở đây khi có người liên hệ với bạn.</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="list-group list-group-flush">
+                            @foreach (var conversation in Model)
+                            {
+                                <div class="list-group-item list-group-item-action p-3 border-0">
+                                    <div class="row align-items-center">
+                                        <div class="col-auto">
+                                            <div class="avatar-circle">
+                                                <span class="avatar-text">
+                                                    @(conversation.OtherUser?.FirstName?.FirstOrDefault() ?? 'U')
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="d-flex justify-content-between align-items-start">
+                                                <div>
+                                                    <h6 class="mb-1 fw-bold">
+                                                        @(conversation.OtherUser?.FirstName + " " +
+                                                                                                        conversation.OtherUser?.LastName)
+                                            </h6>
+                                            <p class="mb-1 text-muted small">
+                                                @if (!string.IsNullOrEmpty(conversation.LastMessage))
+                                                        {
+                                                            @(conversation.LastMessage.Length > 50 ?
+                                                                                                            conversation.LastMessage.Substring(0, 50) + "..." :
+                                                                                                            conversation.LastMessage)
+                                                                                                }
+                                                        else
+                                                        {
+                                                            <span class="text-muted">Chưa có tin nhắn</span>
+                                                        }
+                                                    </p>
+                                                </div>
+                                                <div class="text-end">
+                                                    <small class="text-muted">
+                                                        @conversation.Timestamp.ToString("dd/MM/yyyy HH:mm")
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <a href="@Url.Action("Chat", "Message", new { userId = conversation.OtherUser?.Id })"
+                                                class="btn btn-outline-primary btn-sm">
+                                                <i class="fas fa-comment me-1"></i>
+                                                Trò chuyện
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

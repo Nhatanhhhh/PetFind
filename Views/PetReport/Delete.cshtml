@@ -1,0 +1,49 @@
+@model PetStore.Models.DTOs.PetReportResponseDTO
+@using PetStore.Models.Enums
+
+@{
+    ViewData["Title"] = "Xóa báo cáo";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">@ViewData["Title"]</h2>
+                    <div class="alert alert-danger">
+                        <h4>Bạn có chắc chắn muốn xóa báo cáo này?</h4>
+                        <p>Hành động này không thể hoàn tác.</p>
+                    </div>
+
+                    <dl class="row">
+                        <dt class="col-sm-3">Tiêu đề</dt>
+                        <dd class="col-sm-9">@Model.Title</dd>
+
+                        <dt class="col-sm-3">Loại báo cáo</dt>
+                        <dd class="col-sm-9">@Model.Type</dd>
+
+                        <dt class="col-sm-3">Loài</dt>
+                        <dd class="col-sm-9">@Model.Species</dd>
+
+                        <dt class="col-sm-3">Trạng thái</dt>
+                        <dd class="col-sm-9">
+                            <span
+                                class="badge bg-@(Model.Status.ToString() == PetReportStatus.Searching.ToString() ? "warning" : Model.Status.ToString() == PetReportStatus.Found.ToString() ? "success" : "secondary")">
+                                @Model.Status
+                            </span>
+                        </dd>
+                    </dl>
+
+                    <form asp-action="Delete" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-danger">Xóa</button>
+                            <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,144 @@
+﻿@model IEnumerable<PetStore.Models.DTOs.PetReportResponseDTO>
+
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+
+<style>
+    .card {
+        border-radius: 0.75rem;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .card-header {
+        border-radius: 0.75rem 0.75rem 0 0 !important;
+    }
+
+    .badge {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.75rem;
+    }
+
+    .btn {
+        border-radius: 0.5rem;
+        font-weight: 500;
+    }
+
+    .card-img-top {
+        border-radius: 0.75rem 0.75rem 0 0;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-house-heart me-2"></i>
+                        Báo cáo thú cưng gần đây
+                    </h4>
+                </div>
+                <div class="card-body">
+                    @if (Model != null && Model.Any())
+                    {
+                        <div class="row g-4">
+                            @foreach (var report in Model)
+                            {
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="card h-100 shadow-sm border-0">
+                                        <div class="position-relative">
+                                            <img src="@(report.ImageUrl ?? "https://via.placeholder.com/300x200?text=Pet+Image")"
+                                                class="card-img-top" alt="Pet" style="height: 200px; object-fit: cover;" />
+                                            <div class="position-absolute top-0 start-0 m-2">
+                                                <span class="badge bg-@(report.Type == "Lost" ? "danger" : "success") fs-6">
+                                                    <i
+                                                        class="fas fa-@(report.Type == "Lost" ? "search" : "hand-holding-heart") me-1"></i>
+                                                    @report.Type
+                                                </span>
+                                            </div>
+                                            <div class="position-absolute top-0 end-0 m-2">
+                                                <span class="badge bg-info fs-6">
+                                                    <i class="fas fa-paw me-1"></i>
+                                                    @report.Species
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="card-body d-flex flex-column">
+                                            <h5 class="card-title fw-bold text-primary">@report.Title</h5>
+                                            <p class="card-text text-muted flex-grow-1">
+                                                @(report.Description.Length > 100 ? report.Description.Substring(0, 100) + "..."
+                                                                                        : report.Description)
+                                    </p>
+                                    <div class="mb-3">
+                                        <div class="row text-muted small">
+                                            <div class="col-6">
+                                                <i class="fas fa-map-marker-alt me-1"></i>
+                                                @report.District, @report.City
+                                            </div>
+                                            <div class="col-6 text-end">
+                                                <i class="fas fa-calendar me-1"></i>
+                                                @(report.LostOrFoundDate?.ToString("dd/MM/yyyy") ?? "N/A")
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex gap-2">
+                                            <span
+                                                class="badge bg-@(report.Status.ToString() == "Searching" ? "warning" : 
+                                                                                                                                                                  report.Status.ToString() == "Found" ? "success" : 
+                                                                                                                                                                  report.Status.ToString() == "Closed" ? "secondary" : 
+                                                                                                                                                                  report.Status.ToString() == "Pending" ? "info" :
+                                                                                                                                                                  report.Status.ToString() == "Rejected" ? "danger" : "info")">
+                                                @(report.Status.ToString() == "Searching" ? "Đang tìm kiếm" :
+                                                  report.Status.ToString() == "Found" ? "Đã tìm thấy" :
+                                                  report.Status.ToString() == "Closed" ? "Đã đóng" :
+                                                  report.Status.ToString() == "Pending" ? "Chờ duyệt" :
+                                                  report.Status.ToString() == "Rejected" ? "Bị từ chối" : report.Status.ToString())
+                                            </span>
+                                            @if (report.Moderations != null && report.Moderations.Any())
+                                            {
+                                                var latestModeration = report.Moderations.OrderByDescending(m => m.CreatedAt).First();
+                                                <span class="badge bg-@(latestModeration.Status.ToString() == "Approved" ? "success" : 
+                                                                       latestModeration.Status.ToString() == "Rejected" ? "danger" : "warning") fs-6">
+                                                    <i class="fas fa-@(latestModeration.Status.ToString() == "Approved" ? "check" : 
+                                                                      latestModeration.Status.ToString() == "Rejected" ? "times" : "clock") me-1"></i>
+                                                    @(latestModeration.Status.ToString() == "Approved" ? "Đã duyệt" :
+                                                      latestModeration.Status.ToString() == "Rejected" ? "Từ chối" : "Chờ duyệt")
+                                                </span>
+                                            }
+                                        </div>
+                                        <a asp-action="Details" asp-controller="PetReport" asp-route-id="@report.Id"
+                                            class="btn btn-outline-primary btn-sm">
+                                            <i class="fas fa-eye me-1"></i>
+                                            Chi tiết
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                                }
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-5">
+                            <i class="fas fa-inbox fa-4x text-muted mb-3"></i>
+                            <h5 class="text-muted">Chưa có báo cáo nào</h5>
+                            <p class="text-muted">Hãy là người đầu tiên tạo báo cáo về thú cưng.</p>
+                            <a asp-action="Create" asp-controller="PetReport" class="btn btn-primary">
+                                <i class="fas fa-plus me-1"></i>
+                                Tạo báo cáo mới
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

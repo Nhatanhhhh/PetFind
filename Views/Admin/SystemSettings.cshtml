@@ -1,0 +1,306 @@
+@{
+    ViewData["Title"] = "Cài đặt hệ thống";
+}
+
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card bg-gradient-primary text-white">
+                <div class="card-body">
+                    <h2 class="mb-0">
+                        <i class="fas fa-cog me-2"></i>
+                        Cài đặt hệ thống
+                    </h2>
+                    <p class="mb-0">Quản lý cấu hình và thiết lập hệ thống PetStore</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Tabs -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-light">
+                    <ul class="nav nav-tabs card-header-tabs" id="settingsTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="general-tab" data-bs-toggle="tab" data-bs-target="#general" type="button" role="tab">
+                                <i class="fas fa-cog me-2"></i>
+                                Cài đặt chung
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="moderation-tab" data-bs-toggle="tab" data-bs-target="#moderation" type="button" role="tab">
+                                <i class="fas fa-shield-alt me-2"></i>
+                                Kiểm duyệt
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="security-tab" data-bs-toggle="tab" data-bs-target="#security" type="button" role="tab">
+                                <i class="fas fa-lock me-2"></i>
+                                Bảo mật
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="notifications-tab" data-bs-toggle="tab" data-bs-target="#notifications" type="button" role="tab">
+                                <i class="fas fa-bell me-2"></i>
+                                Thông báo
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content" id="settingsTabsContent">
+                        <!-- General Settings -->
+                        <div class="tab-pane fade show active" id="general" role="tabpanel">
+                            <form asp-action="UpdateSystemSettings" method="post">
+                                @Html.AntiForgeryToken()
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5 class="mb-3">Thông tin hệ thống</h5>
+                                        <div class="mb-3">
+                                            <label for="siteName" class="form-label">Tên website</label>
+                                            <input type="text" class="form-control" id="siteName" name="siteName" value="PetStore" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="siteDescription" class="form-label">Mô tả website</label>
+                                            <textarea class="form-control" id="siteDescription" name="siteDescription" rows="3">Hệ thống tìm kiếm thú cưng bị mất</textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="contactEmail" class="form-label">Email liên hệ</label>
+                                            <input type="email" class="form-control" id="contactEmail" name="contactEmail" value="admin@petstore.com">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5 class="mb-3">Cài đặt hiển thị</h5>
+                                        <div class="mb-3">
+                                            <label for="reportsPerPage" class="form-label">Số báo cáo mỗi trang</label>
+                                            <select class="form-select" id="reportsPerPage" name="reportsPerPage">
+                                                <option value="10">10</option>
+                                                <option value="20" selected>20</option>
+                                                <option value="50">50</option>
+                                                <option value="100">100</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="defaultLanguage" class="form-label">Ngôn ngữ mặc định</label>
+                                            <select class="form-select" id="defaultLanguage" name="defaultLanguage">
+                                                <option value="vi" selected>Tiếng Việt</option>
+                                                <option value="en">English</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="enableRegistration" name="enableRegistration" checked>
+                                                <label class="form-check-label" for="enableRegistration">
+                                                    Cho phép đăng ký tài khoản mới
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Moderation Settings -->
+                        <div class="tab-pane fade" id="moderation" role="tabpanel">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5 class="mb-3">Cài đặt kiểm duyệt</h5>
+                                    <div class="mb-3">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="autoApprove" name="autoApprove">
+                                            <label class="form-check-label" for="autoApprove">
+                                                Tự động duyệt báo cáo mới
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="moderationDelay" class="form-label">Thời gian chờ kiểm duyệt (giờ)</label>
+                                        <input type="number" class="form-control" id="moderationDelay" name="moderationDelay" value="24" min="1" max="168">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="maxReportsPerUser" class="form-label">Số báo cáo tối đa mỗi người dùng</label>
+                                        <input type="number" class="form-control" id="maxReportsPerUser" name="maxReportsPerUser" value="10" min="1" max="100">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5 class="mb-3">Từ khóa cấm</h5>
+                                    <div class="mb-3">
+                                        <label for="bannedKeywords" class="form-label">Danh sách từ khóa cấm (mỗi dòng một từ)</label>
+                                        <textarea class="form-control" id="bannedKeywords" name="bannedKeywords" rows="6" placeholder="spam&#10;quảng cáo&#10;lừa đảo"></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="enableKeywordFilter" name="enableKeywordFilter" checked>
+                                            <label class="form-check-label" for="enableKeywordFilter">
+                                                Bật lọc từ khóa cấm
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Security Settings -->
+                        <div class="tab-pane fade" id="security" role="tabpanel">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5 class="mb-3">Bảo mật tài khoản</h5>
+                                    <div class="mb-3">
+                                        <label for="minPasswordLength" class="form-label">Độ dài mật khẩu tối thiểu</label>
+                                        <input type="number" class="form-control" id="minPasswordLength" name="minPasswordLength" value="8" min="6" max="20">
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="requireSpecialChar" name="requireSpecialChar" checked>
+                                            <label class="form-check-label" for="requireSpecialChar">
+                                                Yêu cầu ký tự đặc biệt trong mật khẩu
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="requireNumber" name="requireNumber" checked>
+                                            <label class="form-check-label" for="requireNumber">
+                                                Yêu cầu số trong mật khẩu
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5 class="mb-3">Bảo mật phiên đăng nhập</h5>
+                                    <div class="mb-3">
+                                        <label for="sessionTimeout" class="form-label">Thời gian timeout phiên (phút)</label>
+                                        <input type="number" class="form-control" id="sessionTimeout" name="sessionTimeout" value="30" min="5" max="480">
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="enableLoginAttempts" name="enableLoginAttempts" checked>
+                                            <label class="form-check-label" for="enableLoginAttempts">
+                                                Giới hạn số lần đăng nhập sai
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="maxLoginAttempts" class="form-label">Số lần đăng nhập sai tối đa</label>
+                                        <input type="number" class="form-control" id="maxLoginAttempts" name="maxLoginAttempts" value="5" min="3" max="10">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Notification Settings -->
+                        <div class="tab-pane fade" id="notifications" role="tabpanel">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5 class="mb-3">Thông báo email</h5>
+                                    <div class="mb-3">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="emailNotifications" name="emailNotifications" checked>
+                                            <label class="form-check-label" for="emailNotifications">
+                                                Bật thông báo email
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="welcomeEmail" name="welcomeEmail" checked>
+                                            <label class="form-check-label" for="welcomeEmail">
+                                                Gửi email chào mừng khi đăng ký
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="reportStatusEmail" name="reportStatusEmail" checked>
+                                            <label class="form-check-label" for="reportStatusEmail">
+                                                Thông báo khi trạng thái báo cáo thay đổi
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5 class="mb-3">Thông báo hệ thống</h5>
+                                    <div class="mb-3">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="systemNotifications" name="systemNotifications" checked>
+                                            <label class="form-check-label" for="systemNotifications">
+                                                Bật thông báo hệ thống
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="adminNotifications" name="adminNotifications" checked>
+                                            <label class="form-check-label" for="adminNotifications">
+                                                Thông báo cho Admin khi có báo cáo mới
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="notificationEmail" class="form-label">Email nhận thông báo Admin</label>
+                                        <input type="email" class="form-control" id="notificationEmail" name="notificationEmail" value="admin@petstore.com">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Save Button -->
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save me-2"></i>
+                                    Lưu cài đặt
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.card {
+    border: none;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    border-radius: 0.5rem;
+}
+
+.card-header {
+    border-radius: 0.5rem 0.5rem 0 0 !important;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.nav-tabs .nav-link {
+    border: none;
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.nav-tabs .nav-link.active {
+    color: #667eea;
+    border-bottom: 2px solid #667eea;
+    background: none;
+}
+
+.form-check-input:checked {
+    background-color: #667eea;
+    border-color: #667eea;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+</style> 

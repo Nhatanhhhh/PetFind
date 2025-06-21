@@ -1,0 +1,88 @@
+@model IEnumerable<PetStore.Models.DTOs.MessageResponseDTO>
+
+@{
+    ViewData["Title"] = "Chat";
+    var otherUser = ViewBag.OtherUser as PetStore.Models.DTOs.UserResponseDTO;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <div class="d-flex align-items-center">
+                        @if (!string.IsNullOrEmpty(otherUser?.AvatarUrl))
+                        {
+                            <img src="@otherUser.AvatarUrl" alt="Avatar" class="rounded-circle me-2" style="width: 40px; height: 40px;" />
+                        }
+                        else
+                        {
+                            <i class="bi bi-person-circle me-2" style="font-size: 2rem;"></i>
+                        }
+                        <div>
+                            <h5 class="mb-0">@otherUser?.FirstName @otherUser?.LastName</h5>
+                            <small class="text-white-50">@otherUser?.Email</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="messages" style="height: 400px; overflow-y: auto;">
+                        @foreach (var message in Model)
+                        {
+                            <div class="message @(message.SenderId == ViewBag.CurrentUserId ? "text-end" : "text-start") mb-3">
+                                <div class="message-content d-inline-block p-3 rounded @(message.SenderId == ViewBag.CurrentUserId ? "bg-primary text-white" : "bg-light")" 
+                                     style="max-width: 70%;">
+                                    @message.Content
+                                    <div class="message-meta mt-1">
+                                        <small class="@(message.SenderId == ViewBag.CurrentUserId ? "text-white-50" : "text-muted")">
+                                            @message.CreatedAt.ToString("HH:mm dd/MM/yyyy")
+                                            @if (!message.IsRead && message.SenderId == ViewBag.CurrentUserId)
+                                            {
+                                                <i class="bi bi-check2-all ms-1"></i>
+                                            }
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <form asp-action="Send" method="post" class="message-form">
+                        <input type="hidden" name="receiverId" value="@otherUser?.Id" />
+                        <div class="input-group">
+                            <input type="text" name="content" class="form-control" placeholder="Nhập tin nhắn..." required />
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-send"></i> Gửi
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Cuộn xuống tin nhắn mới nhất
+            $('.messages').scrollTop($('.messages')[0].scrollHeight);
+
+            // Tự động cuộn khi có tin nhắn mới
+            $('.message-form').on('submit', function() {
+                setTimeout(function() {
+                    $('.messages').scrollTop($('.messages')[0].scrollHeight);
+                }, 100);
+            });
+
+            // Đánh dấu tin nhắn đã đọc
+            $('.message:not(.text-end)').each(function() {
+                var messageId = $(this).data('message-id');
+                if (messageId) {
+                    $.post('@Url.Action("MarkAsRead")', { messageId: messageId });
+                }
+            });
+        });
+    </script>
+} 

@@ -1,0 +1,322 @@
+@model IEnumerable<PetStore.Models.DTOs.PetReportResponseDTO>
+
+@{
+    ViewData["Title"] = "Quản lý báo cáo";
+}
+
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card bg-gradient-primary text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h2 class="mb-0">
+                                <i class="fas fa-file-alt me-2"></i>
+                                Quản lý báo cáo
+                            </h2>
+                            <p class="mb-0">Quản lý tất cả báo cáo thú cưng trong hệ thống</p>
+                        </div>
+                        <div>
+                            <span class="badge bg-light text-dark fs-6">
+                                Tổng: @Model.Count() báo cáo
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reports Table -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">
+                        <i class="fas fa-list me-2"></i>
+                        Danh sách báo cáo
+                    </h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Thông tin</th>
+                                        <th>Loại</th>
+                                        <th>Trạng thái</th>
+                                        <th>Người đăng</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Kiểm duyệt</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var report in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    @if (!string.IsNullOrEmpty(report.ImageUrl))
+                                                    {
+                                                        <img src="@report.ImageUrl" alt="Pet Image" class="report-thumbnail me-3" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="report-placeholder me-3">
+                                                            <i class="fas fa-paw"></i>
+                                                        </div>
+                                                    }
+                                                    <div>
+                                                        <h6 class="mb-0">@report.Title</h6>
+                                                        <small class="text-muted">
+                                                            @report.Species - @report.Breed - @report.Color
+                                                        </small>
+                                                        <br>
+                                                        <small class="text-muted">
+                                                            <i class="fas fa-map-marker-alt me-1"></i>
+                                                            @report.District, @report.City
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-@(report.Type == "Lost" ? "danger" : "success")">
+                                                    <i class="fas fa-@(report.Type == "Lost" ? "search" : "hand-holding-heart") me-1"></i>
+                                                    @report.Type
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-@(report.Status.ToString() switch {
+                                                    "Searching" => "warning",
+                                                    "Found" => "success",
+                                                    "Closed" => "secondary",
+                                                    _ => "info"
+                                                })">
+                                                    @report.Status
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="avatar-circle-sm me-2">
+                                                        <span class="avatar-text-sm">
+                                                            @(report.User?.FirstName?.FirstOrDefault() ?? 'U')
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <small class="fw-bold">@(report.User?.FirstName + " " + report.User?.LastName)</small>
+                                                        <br>
+                                                        <small class="text-muted">@report.User?.Email</small>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <small class="text-muted">
+                                                    @report.CreatedAt.ToString("dd/MM/yyyy HH:mm")
+                                                </small>
+                                            </td>
+                                            <td>
+                                                @{
+                                                    var moderation = report.Moderations?.FirstOrDefault();
+                                                    var moderationStatus = moderation?.Status;
+                                                }
+                                                @if (moderationStatus != null)
+                                                {
+                                                    <span class="badge bg-@(moderationStatus.ToString() switch {
+                                                        "Pending" => "warning",
+                                                        "Approved" => "success",
+                                                        "Rejected" => "danger",
+                                                        _ => "secondary"
+                                                    })">
+                                                        <i class="fas fa-@(moderationStatus.ToString() switch {
+                                                            "Pending" => "clock",
+                                                            "Approved" => "check",
+                                                            "Rejected" => "times",
+                                                            _ => "question"
+                                                        }) me-1"></i>
+                                                        @moderationStatus
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-secondary">
+                                                        <i class="fas fa-question me-1"></i>
+                                                        Chưa kiểm duyệt
+                                                    </span>
+                                                }
+                                            </td>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    <button type="button" class="btn btn-sm btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">
+                                                        <i class="fas fa-cog"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a class="dropdown-item" href="@Url.Action("Details", "PetReport", new { id = report.Id })">
+                                                                <i class="fas fa-eye me-2"></i>
+                                                                Xem chi tiết
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item" href="@Url.Action("Edit", "PetReport", new { id = report.Id })">
+                                                                <i class="fas fa-edit me-2"></i>
+                                                                Chỉnh sửa
+                                                            </a>
+                                                        </li>
+                                                        <li><hr class="dropdown-divider"></li>
+                                                        <li>
+                                                            <form asp-action="UpdateReportStatus" method="post" style="display: inline;">
+                                                                @Html.AntiForgeryToken()
+                                                                <input type="hidden" name="id" value="@report.Id" />
+                                                                <input type="hidden" name="status" value="Searching" />
+                                                                <button type="submit" class="dropdown-item">
+                                                                    <i class="fas fa-search me-2"></i>
+                                                                    Đang tìm kiếm
+                                                                </button>
+                                                            </form>
+                                                        </li>
+                                                        <li>
+                                                            <form asp-action="UpdateReportStatus" method="post" style="display: inline;">
+                                                                @Html.AntiForgeryToken()
+                                                                <input type="hidden" name="id" value="@report.Id" />
+                                                                <input type="hidden" name="status" value="Found" />
+                                                                <button type="submit" class="dropdown-item">
+                                                                    <i class="fas fa-check me-2"></i>
+                                                                    Đã tìm thấy
+                                                                </button>
+                                                            </form>
+                                                        </li>
+                                                        <li>
+                                                            <form asp-action="UpdateReportStatus" method="post" style="display: inline;">
+                                                                @Html.AntiForgeryToken()
+                                                                <input type="hidden" name="id" value="@report.Id" />
+                                                                <input type="hidden" name="status" value="Closed" />
+                                                                <button type="submit" class="dropdown-item">
+                                                                    <i class="fas fa-times me-2"></i>
+                                                                    Đóng báo cáo
+                                                                </button>
+                                                            </form>
+                                                        </li>
+                                                        <li><hr class="dropdown-divider"></li>
+                                                        <li>
+                                                            <form asp-action="DeleteReport" method="post" style="display: inline;" 
+                                                                  onsubmit="return confirm('Bạn có chắc chắn muốn xóa báo cáo này?')">
+                                                                @Html.AntiForgeryToken()
+                                                                <input type="hidden" name="id" value="@report.Id" />
+                                                                <button type="submit" class="dropdown-item text-danger">
+                                                                    <i class="fas fa-trash me-2"></i>
+                                                                    Xóa báo cáo
+                                                                </button>
+                                                            </form>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-5">
+                            <i class="fas fa-file-alt fa-3x text-muted mb-3"></i>
+                            <h5 class="text-muted">Chưa có báo cáo nào</h5>
+                            <p class="text-muted">Báo cáo sẽ xuất hiện ở đây khi người dùng đăng.</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.card {
+    border: none;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    border-radius: 0.5rem;
+}
+
+.card-header {
+    border-radius: 0.5rem 0.5rem 0 0 !important;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.report-thumbnail {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+
+.report-placeholder {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+}
+
+.avatar-circle-sm {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.avatar-text-sm {
+    text-transform: uppercase;
+}
+
+.table th {
+    border-top: none;
+    font-weight: 600;
+    color: #495057;
+}
+
+.btn-group .dropdown-toggle::after {
+    margin-left: 0.5em;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+.dropdown-item.text-danger:hover {
+    background-color: #dc3545;
+    color: white !important;
+}
+</style>
+
+@section Scripts {
+    <script>
+        // Thêm xác nhận trước khi xóa báo cáo
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function (e) {
+                if (!confirm('Bạn có chắc chắn muốn xóa báo cáo này?')) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+}

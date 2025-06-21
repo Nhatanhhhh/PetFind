@@ -1,0 +1,43 @@
+@model IEnumerable<PetStore.Models.DTOs.ConversationDTO>
+
+@{
+    ViewData["Title"] = "Cuộc hội thoại";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="mb-0">Cuộc hội thoại</h3>
+                </div>
+                <div class="card-body">
+                    @if (Model.Any())
+                    {
+                        <div class="list-group">
+                            @foreach (var conversation in Model)
+                            {
+                                <a href="@Url.Action("Chat", "Message", new { userId = conversation.UserId })"
+                                    class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">@(conversation.OtherUser?.FirstName + " " +
+                                                                                conversation.OtherUser?.LastName)</h5>
+                                <small>@conversation.Timestamp.ToString("dd/MM/yyyy HH:mm")</small>
+                            </div>
+                            <p class="mb-1">@conversation.LastMessage</p>
+                            <small class="text-muted">@conversation.OtherUser?.Email</small>
+                        </a>
+                                                }
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-info">
+                            Bạn chưa có cuộc hội thoại nào.
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

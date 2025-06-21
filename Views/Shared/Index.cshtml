@@ -1,0 +1,108 @@
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+
+<style>
+    .card {
+        border: none;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        border-radius: 0.5rem;
+    }
+
+    .card-header {
+        border-radius: 0.5rem 0.5rem 0 0 !important;
+    }
+
+    .btn {
+        border-radius: 0.375rem;
+        padding: 0.5rem 1rem;
+        font-weight: 500;
+    }
+
+    .fas {
+        width: 20px;
+        text-align: center;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-home me-2"></i>
+                        Chào mừng đến với PetStore
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="text-center py-4">
+                                <i class="fas fa-paw fa-4x text-primary mb-3"></i>
+                                <h5 class="text-primary">Tìm kiếm thú cưng</h5>
+                                <p class="text-muted">
+                                    Giúp bạn tìm kiếm thú cưng bị lạc hoặc tìm chủ nhân cho thú cưng được nhặt được.
+                                </p>
+                                <a href="@Url.Action("Index", "PetReport")" class="btn btn-primary">
+                                    <i class="fas fa-search me-1"></i>
+                                    Xem báo cáo
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-center py-4">
+                                <i class="fas fa-comments fa-4x text-success mb-3"></i>
+                                <h5 class="text-success">Liên lạc</h5>
+                                <p class="text-muted">
+                                    Liên lạc với người khác để trao đổi thông tin về thú cưng.
+                                </p>
+                                <a href="@Url.Action("Index", "Message")" class="btn btn-success">
+                                    <i class="fas fa-envelope me-1"></i>
+                                    Tin nhắn
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="row">
+                        <div class="col-12">
+                            <h6 class="text-muted mb-3">
+                                <i class="fas fa-info-circle me-1"></i>
+                                Tính năng chính
+                            </h6>
+                            <div class="row g-3">
+                                <div class="col-md-3">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-file-alt text-info me-2"></i>
+                                        <span>Báo cáo thú cưng</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-search text-warning me-2"></i>
+                                        <span>Tìm kiếm thông minh</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-comment-dots text-success me-2"></i>
+                                        <span>Liên lạc trực tiếp</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-shield-alt text-danger me-2"></i>
+                                        <span>Kiểm duyệt nội dung</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,115 @@
+@model PetStore.Models.DTOs.PetReportResponseDTO
+@using System.Security.Claims
+@using PetStore.Models.Enums
+
+@{
+    ViewData["Title"] = "Chi tiết báo cáo";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">@Model.Title</h3>
+            </div>
+            <div class="card-body">
+                <img src="@(Model.ImageUrl ?? "https://via.placeholder.com/300")" alt="Pet" class="img-fluid mb-3" />
+                <p><strong>Loại:</strong> @Model.Type</p>
+                <p><strong>Loài:</strong> @Model.Species</p>
+                <p><strong>Tên thú cưng:</strong> @Model.PetName</p>
+                <p><strong>Giống:</strong> @Model.Breed</p>
+                <p><strong>Màu sắc:</strong> @Model.Color</p>
+                <p><strong>Mô tả:</strong> @Model.Description</p>
+                <p><strong>Ngày:</strong> @Model.LostOrFoundDate?.ToString("dd/MM/yyyy") ?? "N/A"</p>
+                <p><strong>Liên hệ:</strong> @Model.ContactName - @Model.ContactPhone</p>
+                <p>
+                    <strong>Trạng thái:</strong>
+                    @if (Model.Status == PetReportStatus.Pending)
+                    {
+                        <span class="badge bg-warning">
+                            <i class="fas fa-clock me-1"></i>
+                            Chờ duyệt
+                        </span>
+                        <small class="text-muted d-block mt-1">
+                            Báo cáo của bạn đang chờ Admin kiểm duyệt. Bạn sẽ nhận được thông báo khi báo cáo được duyệt.
+                        </small>
+                    }
+                    else if (Model.Status == PetReportStatus.Searching)
+                    {
+                        <span class="badge bg-info">
+                            <i class="fas fa-search me-1"></i>
+                            Đang tìm kiếm
+                        </span>
+                    }
+                    else if (Model.Status == PetReportStatus.Found)
+                    {
+                        <span class="badge bg-success">
+                            <i class="fas fa-check me-1"></i>
+                            Đã tìm thấy
+                        </span>
+                    }
+                    else if (Model.Status == PetReportStatus.Closed)
+                    {
+                        <span class="badge bg-secondary">
+                            <i class="fas fa-times me-1"></i>
+                            Đã đóng
+                        </span>
+                    }
+                    else if (Model.Status == PetReportStatus.Rejected)
+                    {
+                        <span class="badge bg-danger">
+                            <i class="fas fa-ban me-1"></i>
+                            Bị từ chối
+                        </span>
+                        @if (Model.Moderations?.Any() == true)
+                        {
+                            var rejection = Model.Moderations.FirstOrDefault(m => m.Status == ContentModerationStatus.Rejected);
+                            if (rejection?.RejectionReason != null)
+                            {
+                                <small class="text-danger d-block mt-1">
+                                    <strong>Lý do từ chối:</strong> @rejection.RejectionReason
+                                </small>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">@Model.Status</span>
+                    }
+                </p>
+                @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                {
+                    <form asp-action="UpdateStatus" method="post" class="mt-3">
+                        <input type="hidden" asp-for="Id" />
+                        <select asp-items="Html.GetEnumSelectList<PetReportStatus>()" name="status"
+                            class="form-control mb-2"></select>
+                        <button type="submit" class="btn btn-primary">Cập nhật trạng thái</button>
+                    </form>
+                }
+            </div>
+            <div class="card-footer">
+                <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+                @if (User.FindFirst(ClaimTypes.NameIdentifier)?.Value == Model.UserId.ToString())
+                {
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning ms-2">Chỉnh sửa</a>
+                    <form asp-action="Delete" method="post" class="d-inline">
+                        <input type="hidden" asp-for="Id" />
+                        <button type="submit" class="btn btn-danger ms-2"
+                            onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</button>
+                    </form>
+                }
+                else
+                {
+                    <a href="@Url.Action("Chat", "Message", new { userId = Model.UserId })" class="btn btn-primary ms-2">
+                        <i class="fas fa-comment me-1"></i>
+                        Liên hệ với @Model.User?.FirstName
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

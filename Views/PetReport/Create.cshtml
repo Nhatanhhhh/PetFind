@@ -1,0 +1,101 @@
+@model PetStore.Models.DTOs.PetReportCreateDTO
+
+@{
+    ViewData["Title"] = "Tạo báo cáo mới";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm p-4">
+            <h2 class="text-center mb-4">Tạo báo cáo mới</h2>
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="mb-3">
+                    <label asp-for="Type" class="form-label fw-semibold">Loại báo cáo</label>
+                    <select asp-for="Type" class="form-control">
+                        <option value="Lost">Thú cưng bị mất</option>
+                        <option value="Found">Thú cưng được tìm thấy</option>
+                    </select>
+                    <span asp-validation-for="Type" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Species" class="form-label fw-semibold">Loài</label>
+                    <select asp-for="Species" class="form-control">
+                        <option value="Dog">Chó</option>
+                        <option value="Cat">Mèo</option>
+                        <option value="Other">Khác</option>
+                    </select>
+                    <span asp-validation-for="Species" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Title" class="form-label fw-semibold">Tiêu đề</label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="PetName" class="form-label fw-semibold">Tên thú cưng</label>
+                    <input asp-for="PetName" class="form-control" />
+                    <span asp-validation-for="PetName" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Breed" class="form-label fw-semibold">Giống</label>
+                    <input asp-for="Breed" class="form-control" />
+                    <span asp-validation-for="Breed" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Color" class="form-label fw-semibold">Màu sắc</label>
+                    <input asp-for="Color" class="form-control" />
+                    <span asp-validation-for="Color" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label fw-semibold">Mô tả</label>
+                    <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="ContactName" class="form-label fw-semibold">Tên liên hệ</label>
+                    <input asp-for="ContactName" class="form-control" />
+                    <span asp-validation-for="ContactName" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="ContactPhone" class="form-label fw-semibold">Số điện thoại</label>
+                    <input asp-for="ContactPhone" class="form-control" />
+                    <span asp-validation-for="ContactPhone" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Hình ảnh thú cưng</label>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label asp-for="ImageFile" class="form-label">Upload ảnh từ máy tính</label>
+                                <input asp-for="ImageFile" type="file" accept="image/*" class="form-control" />
+                                <div class="form-text">Hỗ trợ: JPG, PNG, GIF, BMP, WebP (tối đa 10MB)</div>
+                                <span asp-validation-for="ImageFile" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label asp-for="ImageUrl" class="form-label">Hoặc nhập URL ảnh</label>
+                                <input asp-for="ImageUrl" class="form-control" placeholder="https://example.com/pet-image.jpg" />
+                                <div class="form-text">Nhập URL ảnh từ internet</div>
+                                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <strong>Lưu ý:</strong> Nếu bạn upload file, nó sẽ được ưu tiên hơn URL. Nếu không có file upload, URL sẽ được sử dụng.
+                    </div>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg fw-bold">Tạo báo cáo</button>
+                    <a asp-action="Index" asp-controller="Home" class="btn btn-secondary mt-2">Quay lại</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

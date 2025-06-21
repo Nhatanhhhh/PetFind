@@ -1,0 +1,58 @@
+@using Microsoft.AspNetCore.Identity
+@using PetStore.Models.Entities
+@using System.Security.Claims
+
+@{
+    var avatarUrl = User.FindFirst("AvatarUrl")?.Value;
+}
+
+@if (User.Identity?.IsAuthenticated ?? false)
+{
+    <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                @if (!string.IsNullOrEmpty(avatarUrl))
+                {
+                    <img src="@avatarUrl" alt="Avatar" class="rounded-circle me-2" style="width: 30px; height: 30px; object-fit: cover;" />
+                }
+                else
+                {
+                    <i class="fas fa-user-circle me-2" style="font-size: 1.5rem;"></i>
+                }
+                @User.FindFirst(ClaimTypes.Name)?.Value
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="userDropdown">
+                <li>
+                    <a class="dropdown-item" href="@Url.Action("Profile", "Account")">
+                        <i class="fas fa-user me-2"></i>
+                        Thông tin cá nhân
+                    </a>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                    <a class="dropdown-item text-danger" href="@Url.Action("Logout", "Account")">
+                        <i class="fas fa-sign-out-alt me-2"></i>
+                        Đăng xuất
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+}
+else
+{
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("Login", "Account")">
+                <i class="fas fa-sign-in-alt me-1"></i>
+                Đăng nhập
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("Register", "Account")">
+                <i class="fas fa-user-plus me-1"></i>
+                Đăng ký
+            </a>
+        </li>
+    </ul>
+}

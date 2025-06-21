@@ -1,0 +1,48 @@
+@model IEnumerable<PetStore.Models.DTOs.ContentModerationResponseDTO>
+@using PetStore.Models.Enums
+
+@{
+    ViewData["Title"] = "Lịch sử kiểm duyệt";
+}
+
+<div class="container">
+    <h2>Lịch sử kiểm duyệt</h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID Báo cáo</th>
+                    <th>Trạng thái</th>
+                    <th>Lý do từ chối</th>
+                    <th>Ngày tạo</th>
+                    <th>Ngày xem xét</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var moderation in Model)
+                {
+                    <tr>
+                        <td>
+                            <a asp-controller="PetReport" asp-action="Details" asp-route-id="@moderation.PetReportId">
+                                @moderation.PetReport?.Title
+                            </a>
+                        </td>
+                        <td>
+                            <span
+                                class="badge @(moderation.Status.ToString() == ContentModerationStatus.Approved.ToString() ? "bg-success" : "bg-danger")">
+                            </span>
+                        </td>
+                        <td>@moderation.RejectionReason</td>
+                        <td>@moderation.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>@(moderation.ReviewedAt?.ToString("dd/MM/yyyy HH:mm") ?? "Chưa xem xét")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-3">
+        <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+    </div>
+</div>

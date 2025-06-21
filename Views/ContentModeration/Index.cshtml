@@ -1,0 +1,55 @@
+@model IEnumerable<PetStore.Models.DTOs.ContentModerationResponseDTO>
+@using PetStore.Models.Enums
+
+@{
+    ViewData["Title"] = "Kiểm duyệt nội dung";
+}
+
+<div class="container">
+    <h2>Kiểm duyệt nội dung</h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Báo cáo</th>
+                    <th>Người kiểm duyệt</th>
+                    <th>Trạng thái</th>
+                    <th>Lý do từ chối</th>
+                    <th>Ngày tạo</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var moderation in Model)
+                {
+                    <tr>
+                        <td>@moderation.Id</td>
+                        <td>
+                            <a asp-controller="PetReport" asp-action="Details" asp-route-id="@moderation.PetReportId">
+                                @moderation.PetReport?.Title
+                            </a>
+                        </td>
+                        <td>@moderation.Moderator?.FirstName @moderation.Moderator?.LastName</td>
+                        <td>
+                            <span
+                                class="badge @(moderation.Status.ToString() == ContentModerationStatus.Approved.ToString() ? "bg-success" : "bg-danger")">
+                                @moderation.Status
+                            </span>
+                        </td>
+                        <td>@moderation.RejectionReason</td>
+                        <td>@moderation.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@moderation.Id" class="btn btn-info btn-sm">Chi tiết</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-3">
+        <a asp-action="History" class="btn btn-secondary">Lịch sử kiểm duyệt</a>
+    </div>
+</div>

@@ -1,0 +1,289 @@
+@model PetStore.Models.DTOs.AdminDashboardDTO
+
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card bg-gradient-primary text-white">
+                <div class="card-body">
+                    <h2 class="mb-0">
+                        <i class="fas fa-crown me-2"></i>
+                        Admin Dashboard
+                    </h2>
+                    <p class="mb-0">Quản lý và giám sát hệ thống PetStore</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="row g-4 mb-4">
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4 class="mb-0">@Model.TotalUsers</h4>
+                            <p class="mb-0">Tổng người dùng</p>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-users fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4 class="mb-0">@Model.TotalReports</h4>
+                            <p class="mb-0">Tổng báo cáo</p>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-file-alt fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-warning text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4 class="mb-0">@Model.PendingModerations</h4>
+                            <p class="mb-0">Chờ kiểm duyệt</p>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-clock fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4 class="mb-0">@Model.TotalMessages</h4>
+                            <p class="mb-0">Tin nhắn</p>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-comments fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detailed Statistics -->
+    <div class="row g-4 mb-4">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-pie me-2"></i>
+                        Báo cáo theo loại
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="text-center">
+                                <h3 class="text-danger">@Model.LostReportsCount</h3>
+                                <p class="text-muted">Mất thú cưng</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center">
+                                <h3 class="text-success">@Model.FoundReportsCount</h3>
+                                <p class="text-muted">Tìm thấy thú cưng</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">
+                        <i class="fas fa-user-check me-2"></i>
+                        Trạng thái người dùng
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="text-center">
+                                <h3 class="text-success">@Model.ActiveUsersCount</h3>
+                                <p class="text-muted">Đang hoạt động</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center">
+                                <h3 class="text-secondary">@Model.InactiveUsersCount</h3>
+                                <p class="text-muted">Không hoạt động</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activities -->
+    <div class="row g-4">
+        <div class="col-xl-8">
+            <div class="card">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">
+                        <i class="fas fa-list me-2"></i>
+                        Báo cáo chờ kiểm duyệt
+                    </h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.PendingReports.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Tiêu đề</th>
+                                        <th>Loại</th>
+                                        <th>Người đăng</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var report in Model.PendingReports.Take(5))
+                                    {
+                                        <tr>
+                                            <td>
+                                                <strong>@report.Title</strong>
+                                                <br>
+                                                <small class="text-muted">@report.Species - @report.Breed</small>
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-@(report.Type == "Lost" ? "danger" : "success")">
+                                                    @report.Type
+                                                </span>
+                                            </td>
+                                            <td>@(report.User?.FirstName + " " + report.User?.LastName)</td>
+                                            <td>@report.CreatedAt.ToString("dd/MM/yyyy")</td>
+                                            <td>
+                                                <a href="@Url.Action("Details", "PetReport", new { id = report.Id })" 
+                                                   class="btn btn-sm btn-outline-primary">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a href="@Url.Action("Moderations", "Admin")" 
+                                                   class="btn btn-sm btn-outline-warning">
+                                                    <i class="fas fa-check"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="text-center mt-3">
+                            <a href="@Url.Action("Moderations", "Admin")" class="btn btn-primary">
+                                Xem tất cả báo cáo chờ kiểm duyệt
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-4">
+                            <i class="fas fa-check-circle fa-3x text-success mb-3"></i>
+                            <h5 class="text-success">Không có báo cáo nào chờ kiểm duyệt</h5>
+                            <p class="text-muted">Tất cả báo cáo đã được xử lý!</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4">
+            <div class="card">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">
+                        <i class="fas fa-users me-2"></i>
+                        Người dùng mới
+                    </h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.RecentUsers.Any())
+                    {
+                        <div class="list-group list-group-flush">
+                            @foreach (var user in Model.RecentUsers)
+                            {
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="mb-0">@user.FirstName @user.LastName</h6>
+                                        <small class="text-muted">@user.Email</small>
+                                    </div>
+                                    <span class="badge bg-@(user.IsActive ? "success" : "secondary")">
+                                        @(user.IsActive ? "Hoạt động" : "Không hoạt động")
+                                    </span>
+                                </div>
+                            }
+                        </div>
+                        <div class="text-center mt-3">
+                            <a href="@Url.Action("Users", "Admin")" class="btn btn-outline-primary btn-sm">
+                                Xem tất cả người dùng
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-4">
+                            <i class="fas fa-users fa-2x text-muted mb-3"></i>
+                            <p class="text-muted">Chưa có người dùng mới</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.card {
+    border: none;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    border-radius: 0.5rem;
+}
+
+.card-header {
+    border-radius: 0.5rem 0.5rem 0 0 !important;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.table th {
+    border-top: none;
+    font-weight: 600;
+    color: #495057;
+}
+
+.list-group-item {
+    border: none;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.list-group-item:last-child {
+    border-bottom: none;
+}
+</style>
