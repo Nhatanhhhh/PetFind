@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Messages" xml:space="preserve">
+    <value>Tin nhắn</value>
+  </data>
+  <data name="Conversations" xml:space="preserve">
+    <value>Cuộc trò chuyện</value>
+  </data>
+  <data name="Chat" xml:space="preserve">
+    <value>Trò chuyện</value>
+  </data>
+  <data name="SendMessage" xml:space="preserve">
+    <value>Gửi tin nhắn</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Tin nhắn</value>
+  </data>
+  <data name="NoMessages" xml:space="preserve">
+    <value>Không có tin nhắn nào.</value>
+  </data>
+  <data name="NoConversations" xml:space="preserve">
+    <value>Không có cuộc trò chuyện nào.</value>
+  </data>
+  <data name="MessageSent" xml:space="preserve">
+    <value>Tin nhắn đã được gửi thành công.</value>
+  </data>
+  <data name="MessageDeleted" xml:space="preserve">
+    <value>Tin nhắn đã được xóa thành công.</value>
+  </data>
+  <data name="With" xml:space="preserve">
+    <value>với</value>
+  </data>
+  <data name="LastMessage" xml:space="preserve">
+    <value>Tin nhắn cuối</value>
+  </data>
+  <data name="Unread" xml:space="preserve">
+    <value>Chưa đọc</value>
+  </data>
+</root> 

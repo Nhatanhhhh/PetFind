@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="SiteName" xml:space="preserve">
+    <value>PetStore</value>
+  </data>
+  <data name="SiteDescription" xml:space="preserve">
+    <value>Pet search and recovery system</value>
+  </data>
+  <data name="ContactEmail" xml:space="preserve">
+    <value>Contact Email</value>
+  </data>
+  <data name="ReportsPerPage" xml:space="preserve">
+    <value>Reports per page</value>
+  </data>
+  <data name="DefaultLanguage" xml:space="preserve">
+    <value>Default Language</value>
+  </data>
+  <data name="Vietnamese" xml:space="preserve">
+    <value>Vietnamese</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="EnableRegistration" xml:space="preserve">
+    <value>Allow new account registration</value>
+  </data>
+  <data name="AutoApprove" xml:space="preserve">
+    <value>Auto-approve new reports</value>
+  </data>
+  <data name="ModerationDelay" xml:space="preserve">
+    <value>Moderation delay (hours)</value>
+  </data>
+  <data name="MaxReportsPerUser" xml:space="preserve">
+    <value>Maximum reports per user</value>
+  </data>
+  <data name="BannedKeywords" xml:space="preserve">
+    <value>Banned keywords list (one per line)</value>
+  </data>
+  <data name="EnableKeywordFilter" xml:space="preserve">
+    <value>Enable banned keyword filtering</value>
+  </data>
+  <data name="MinPasswordLength" xml:space="preserve">
+    <value>Minimum password length</value>
+  </data>
+  <data name="RequireSpecialChar" xml:space="preserve">
+    <value>Require special characters in password</value>
+  </data>
+  <data name="RequireNumber" xml:space="preserve">
+    <value>Require numbers in password</value>
+  </data>
+  <data name="SessionTimeout" xml:space="preserve">
+    <value>Session timeout (minutes)</value>
+  </data>
+  <data name="EnableLoginAttempts" xml:space="preserve">
+    <value>Limit failed login attempts</value>
+  </data>
+  <data name="MaxLoginAttempts" xml:space="preserve">
+    <value>Maximum failed login attempts</value>
+  </data>
+  <data name="EmailNotifications" xml:space="preserve">
+    <value>Enable email notifications</value>
+  </data>
+  <data name="WelcomeEmail" xml:space="preserve">
+    <value>Send welcome email on registration</value>
+  </data>
+  <data name="ReportStatusEmail" xml:space="preserve">
+    <value>Notify when report status changes</value>
+  </data>
+  <data name="SystemNotifications" xml:space="preserve">
+    <value>System Notifications</value>
+  </data>
+  <data name="AdminNotifications" xml:space="preserve">
+    <value>Notify Admin when new reports arrive</value>
+  </data>
+  <data name="NotificationEmail" xml:space="preserve">
+    <value>Admin notification email</value>
+  </data>
+  <data name="SaveSettings" xml:space="preserve">
+    <value>Save Settings</value>
+  </data>
+  <data name="SettingsSaved" xml:space="preserve">
+    <value>Settings saved successfully!</value>
+  </data>
+  <data name="GeneralSettings" xml:space="preserve">
+    <value>General Settings</value>
+  </data>
+  <data name="ModerationSettings" xml:space="preserve">
+    <value>Moderation</value>
+  </data>
+  <data name="SecuritySettings" xml:space="preserve">
+    <value>Security</value>
+  </data>
+  <data name="NotificationSettings" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <data name="SystemInformation" xml:space="preserve">
+    <value>System Information</value>
+  </data>
+  <data name="DisplaySettings" xml:space="preserve">
+    <value>Display Settings</value>
+  </data>
+  <data name="ModerationConfiguration" xml:space="preserve">
+    <value>Moderation Configuration</value>
+  </data>
+  <data name="BannedKeywordsList" xml:space="preserve">
+    <value>Banned Keywords</value>
+  </data>
+  <data name="AccountSecurity" xml:space="preserve">
+    <value>Account Security</value>
+  </data>
+  <data name="SessionSecurity" xml:space="preserve">
+    <value>Session Security</value>
+  </data>
+  <data name="SiteNameRequired" xml:space="preserve">
+    <value>Site name cannot be empty.</value>
+  </data>
+  <data name="ReportsPerPageRange" xml:space="preserve">
+    <value>Reports per page must be between 1 and 100.</value>
+  </data>
+  <data name="MinPasswordLengthRange" xml:space="preserve">
+    <value>Minimum password length must be between 6 and 20 characters.</value>
+  </data>
+  <data name="SettingsSaveError" xml:space="preserve">
+    <value>Error saving system settings.</value>
+  </data>
+  <data name="SettingsUpdateError" xml:space="preserve">
+    <value>Error updating settings</value>
+  </data>
+  <data name="SystemSettings" xml:space="preserve">
+    <value>System Settings</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="MyReports" xml:space="preserve">
+    <value>My Reports</value>
+  </data>
+  <data name="Messages" xml:space="preserve">
+    <value>Messages</value>
+  </data>
+  <data name="Admin" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="UserManagement" xml:space="preserve">
+    <value>User Management</value>
+  </data>
+  <data name="ReportManagement" xml:space="preserve">
+    <value>Report Management</value>
+  </data>
+  <data name="ContentModeration" xml:space="preserve">
+    <value>Content Moderation</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+  <data name="AllRightsReserved" xml:space="preserve">
+    <value>All rights reserved.</value>
+  </data>
+  <data name="RecentPetReports" xml:space="preserve">
+    <value>Recent Pet Reports</value>
+  </data>
+  <data name="Searching" xml:space="preserve">
+    <value>Searching</value>
+  </data>
+  <data name="Closed" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="NoReportsYet" xml:space="preserve">
+    <value>No reports yet</value>
+  </data>
+  <data name="BeFirstToCreateReport" xml:space="preserve">
+    <value>Be the first to create a pet report.</value>
+  </data>
+  <data name="CreateNewReport" xml:space="preserve">
+    <value>Create New Report</value>
+  </data>
+</root>

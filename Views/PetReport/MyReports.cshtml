@@ -21,7 +21,14 @@
                             <strong>Địa điểm:</strong> @report.District, @report.City<br>
                             <strong>Trạng thái:</strong>
                             <span
-                                class="badge @(report.Status.ToString() == PetReportStatus.Searching.ToString() ? "bg-warning" : report.Status.ToString() == PetReportStatus.Found.ToString() ? "bg-success" : report.Status.ToString() == PetReportStatus.Closed.ToString() ? "bg-secondary" : "bg-info")">
+                                class="badge @(report.Status switch
+                                {
+                                    PetReportStatus.Searching => "bg-warning",
+                                    PetReportStatus.Found => "bg-success",
+                                    PetReportStatus.Rejected => "bg-danger",
+                                    PetReportStatus.Closed => "bg-secondary",
+                                    _ => "bg-info"
+                                })">
                                 @report.Status
                             </span>
                         </p>

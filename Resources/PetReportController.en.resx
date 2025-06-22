@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="PetReports" xml:space="preserve">
+    <value>Pet Reports</value>
+  </data>
+  <data name="CreateReport" xml:space="preserve">
+    <value>Create Report</value>
+  </data>
+  <data name="EditReport" xml:space="preserve">
+    <value>Edit Report</value>
+  </data>
+  <data name="DeleteReport" xml:space="preserve">
+    <value>Delete Report</value>
+  </data>
+  <data name="ReportDetails" xml:space="preserve">
+    <value>Report Details</value>
+  </data>
+  <data name="MyReports" xml:space="preserve">
+    <value>My Reports</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Lost" xml:space="preserve">
+    <value>Lost</value>
+  </data>
+  <data name="Found" xml:space="preserve">
+    <value>Found</value>
+  </data>
+  <data name="Species" xml:space="preserve">
+    <value>Species</value>
+  </data>
+  <data name="PetName" xml:space="preserve">
+    <value>Pet Name</value>
+  </data>
+  <data name="Breed" xml:space="preserve">
+    <value>Breed</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="District" xml:space="preserve">
+    <value>District</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="LostOrFoundDate" xml:space="preserve">
+    <value>Lost/Found Date</value>
+  </data>
+  <data name="ContactName" xml:space="preserve">
+    <value>Contact Name</value>
+  </data>
+  <data name="ContactPhone" xml:space="preserve">
+    <value>Contact Phone</value>
+  </data>
+  <data name="ContactEmail" xml:space="preserve">
+    <value>Contact Email</value>
+  </data>
+  <data name="ContactNote" xml:space="preserve">
+    <value>Contact Note</value>
+  </data>
+  <data name="PetImage" xml:space="preserve">
+    <value>Pet Image</value>
+  </data>
+  <data name="UploadImage" xml:space="preserve">
+    <value>Upload Image</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="CreatedAt" xml:space="preserve">
+    <value>Created At</value>
+  </data>
+  <data name="UpdatedAt" xml:space="preserve">
+    <value>Updated At</value>
+  </data>
+  <data name="ReportCreated" xml:space="preserve">
+    <value>Report created successfully.</value>
+  </data>
+  <data name="ReportUpdated" xml:space="preserve">
+    <value>Report updated successfully.</value>
+  </data>
+  <data name="ReportDeleted" xml:space="preserve">
+    <value>Report deleted successfully.</value>
+  </data>
+  <data name="NoReports" xml:space="preserve">
+    <value>No reports found.</value>
+  </data>
+</root> 

@@ -1,0 +1,2 @@
+# This file ensures the appsettings directory is created
+# System settings will be stored in system-settings.json in this directory 

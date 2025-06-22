@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="PetReports" xml:space="preserve">
+    <value>Báo cáo thú cưng</value>
+  </data>
+  <data name="CreateReport" xml:space="preserve">
+    <value>Tạo báo cáo</value>
+  </data>
+  <data name="EditReport" xml:space="preserve">
+    <value>Chỉnh sửa báo cáo</value>
+  </data>
+  <data name="DeleteReport" xml:space="preserve">
+    <value>Xóa báo cáo</value>
+  </data>
+  <data name="ReportDetails" xml:space="preserve">
+    <value>Chi tiết báo cáo</value>
+  </data>
+  <data name="MyReports" xml:space="preserve">
+    <value>Báo cáo của tôi</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Tiêu đề</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Loại</value>
+  </data>
+  <data name="Lost" xml:space="preserve">
+    <value>Bị mất</value>
+  </data>
+  <data name="Found" xml:space="preserve">
+    <value>Được tìm thấy</value>
+  </data>
+  <data name="Species" xml:space="preserve">
+    <value>Loài</value>
+  </data>
+  <data name="PetName" xml:space="preserve">
+    <value>Tên thú cưng</value>
+  </data>
+  <data name="Breed" xml:space="preserve">
+    <value>Giống</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Màu sắc</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Mô tả</value>
+  </data>
+  <data name="District" xml:space="preserve">
+    <value>Quận/Huyện</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Thành phố</value>
+  </data>
+  <data name="LostOrFoundDate" xml:space="preserve">
+    <value>Ngày mất/tìm thấy</value>
+  </data>
+  <data name="ContactName" xml:space="preserve">
+    <value>Tên liên hệ</value>
+  </data>
+  <data name="ContactPhone" xml:space="preserve">
+    <value>Số điện thoại liên hệ</value>
+  </data>
+  <data name="ContactEmail" xml:space="preserve">
+    <value>Email liên hệ</value>
+  </data>
+  <data name="ContactNote" xml:space="preserve">
+    <value>Ghi chú liên hệ</value>
+  </data>
+  <data name="PetImage" xml:space="preserve">
+    <value>Ảnh thú cưng</value>
+  </data>
+  <data name="UploadImage" xml:space="preserve">
+    <value>Tải lên ảnh</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Trạng thái</value>
+  </data>
+  <data name="CreatedAt" xml:space="preserve">
+    <value>Ngày tạo</value>
+  </data>
+  <data name="UpdatedAt" xml:space="preserve">
+    <value>Ngày cập nhật</value>
+  </data>
+  <data name="ReportCreated" xml:space="preserve">
+    <value>Báo cáo đã được tạo thành công.</value>
+  </data>
+  <data name="ReportUpdated" xml:space="preserve">
+    <value>Báo cáo đã được cập nhật thành công.</value>
+  </data>
+  <data name="ReportDeleted" xml:space="preserve">
+    <value>Báo cáo đã được xóa thành công.</value>
+  </data>
+  <data name="NoReports" xml:space="preserve">
+    <value>Không có báo cáo nào.</value>
+  </data>
+</root> 

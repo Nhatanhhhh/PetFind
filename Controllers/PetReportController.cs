@@ -14,11 +14,13 @@ namespace PetStore.Controllers
     {
         private readonly IPetReportDAO _petReportDAO;
         private readonly IFileService _fileService;
+        private readonly IUserDAO _userDAO;
 
-        public PetReportController(IPetReportDAO petReportDAO, IFileService fileService)
+        public PetReportController(IPetReportDAO petReportDAO, IFileService fileService, IUserDAO userDAO)
         {
             _petReportDAO = petReportDAO;
             _fileService = fileService;
+            _userDAO = userDAO;
         }
 
         public async Task<IActionResult> Index()
@@ -35,15 +37,33 @@ namespace PetStore.Controllers
             return View(report);
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier) ?? "0");
+            if (userId == 0) return Unauthorized();
+
+            var user = await _userDAO.GetUserByIdAsync(userId);
+            if (user == null) return NotFound();
+
+            var model = new PetReportCreateDTO
+            {
+                ContactEmail = user.Email,
+                ContactName = $"{user.FirstName} {user.LastName}".Trim(),
+                ContactPhone = user.PhoneNumber ?? ""
+            };
+
+            return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(PetReportCreateDTO reportDto)
         {
+            if (reportDto.LostOrFoundDate > DateTime.Now)
+            {
+                ModelState.AddModelError(nameof(reportDto.LostOrFoundDate), "Ngày mất/tìm thấy không được là một ngày trong tương lai.");
+            }
+
             if (ModelState.IsValid)
             {
                 try
@@ -102,7 +122,7 @@ namespace PetStore.Controllers
                 Description = report.Description,
                 District = report.District,
                 City = report.City,
-                LostOrFoundDate = report.LostOrFoundDate ?? DateTime.MinValue,
+                LostOrFoundDate = report.LostOrFoundDate ?? DateTime.Now,
                 Status = report.Status,
                 ContactName = report.ContactName,
                 ContactPhone = report.ContactPhone,

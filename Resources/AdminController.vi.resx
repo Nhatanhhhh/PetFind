@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="SiteNameRequired" xml:space="preserve">
+    <value>Tên website không được để trống.</value>
+  </data>
+  <data name="ReportsPerPageRange" xml:space="preserve">
+    <value>Số báo cáo mỗi trang phải từ 1 đến 100.</value>
+  </data>
+  <data name="MinPasswordLengthRange" xml:space="preserve">
+    <value>Độ dài mật khẩu tối thiểu phải từ 6 đến 20 ký tự.</value>
+  </data>
+  <data name="SettingsSaved" xml:space="preserve">
+    <value>Cài đặt hệ thống đã được cập nhật thành công!</value>
+  </data>
+  <data name="SettingsSaveError" xml:space="preserve">
+    <value>Lỗi khi lưu cài đặt hệ thống.</value>
+  </data>
+  <data name="SettingsUpdateError" xml:space="preserve">
+    <value>Lỗi khi cập nhật cài đặt</value>
+  </data>
+</root> 

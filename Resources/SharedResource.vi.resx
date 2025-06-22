@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="SiteName" xml:space="preserve">
+    <value>PetStore</value>
+  </data>
+  <data name="SiteDescription" xml:space="preserve">
+    <value>Hệ thống tìm kiếm thú cưng bị mất</value>
+  </data>
+  <data name="ContactEmail" xml:space="preserve">
+    <value>Email liên hệ</value>
+  </data>
+  <data name="ReportsPerPage" xml:space="preserve">
+    <value>Số báo cáo mỗi trang</value>
+  </data>
+  <data name="DefaultLanguage" xml:space="preserve">
+    <value>Ngôn ngữ mặc định</value>
+  </data>
+  <data name="Vietnamese" xml:space="preserve">
+    <value>Tiếng Việt</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="EnableRegistration" xml:space="preserve">
+    <value>Cho phép đăng ký tài khoản mới</value>
+  </data>
+  <data name="AutoApprove" xml:space="preserve">
+    <value>Tự động duyệt báo cáo mới</value>
+  </data>
+  <data name="ModerationDelay" xml:space="preserve">
+    <value>Thời gian chờ kiểm duyệt (giờ)</value>
+  </data>
+  <data name="MaxReportsPerUser" xml:space="preserve">
+    <value>Số báo cáo tối đa mỗi người dùng</value>
+  </data>
+  <data name="BannedKeywords" xml:space="preserve">
+    <value>Danh sách từ khóa cấm (mỗi dòng một từ)</value>
+  </data>
+  <data name="EnableKeywordFilter" xml:space="preserve">
+    <value>Bật lọc từ khóa cấm</value>
+  </data>
+  <data name="MinPasswordLength" xml:space="preserve">
+    <value>Độ dài mật khẩu tối thiểu</value>
+  </data>
+  <data name="RequireSpecialChar" xml:space="preserve">
+    <value>Yêu cầu ký tự đặc biệt trong mật khẩu</value>
+  </data>
+  <data name="RequireNumber" xml:space="preserve">
+    <value>Yêu cầu số trong mật khẩu</value>
+  </data>
+  <data name="SessionTimeout" xml:space="preserve">
+    <value>Thời gian timeout phiên (phút)</value>
+  </data>
+  <data name="EnableLoginAttempts" xml:space="preserve">
+    <value>Giới hạn số lần đăng nhập sai</value>
+  </data>
+  <data name="MaxLoginAttempts" xml:space="preserve">
+    <value>Số lần đăng nhập sai tối đa</value>
+  </data>
+  <data name="EmailNotifications" xml:space="preserve">
+    <value>Bật thông báo email</value>
+  </data>
+  <data name="WelcomeEmail" xml:space="preserve">
+    <value>Gửi email chào mừng khi đăng ký</value>
+  </data>
+  <data name="ReportStatusEmail" xml:space="preserve">
+    <value>Thông báo khi trạng thái báo cáo thay đổi</value>
+  </data>
+  <data name="SystemNotifications" xml:space="preserve">
+    <value>Thông báo hệ thống</value>
+  </data>
+  <data name="AdminNotifications" xml:space="preserve">
+    <value>Thông báo cho Admin khi có báo cáo mới</value>
+  </data>
+  <data name="NotificationEmail" xml:space="preserve">
+    <value>Email nhận thông báo Admin</value>
+  </data>
+  <data name="SaveSettings" xml:space="preserve">
+    <value>Lưu cài đặt</value>
+  </data>
+  <data name="SettingsSaved" xml:space="preserve">
+    <value>Cài đặt đã được lưu thành công!</value>
+  </data>
+  <data name="GeneralSettings" xml:space="preserve">
+    <value>Cài đặt chung</value>
+  </data>
+  <data name="ModerationSettings" xml:space="preserve">
+    <value>Kiểm duyệt</value>
+  </data>
+  <data name="SecuritySettings" xml:space="preserve">
+    <value>Bảo mật</value>
+  </data>
+  <data name="NotificationSettings" xml:space="preserve">
+    <value>Thông báo</value>
+  </data>
+  <data name="SystemInformation" xml:space="preserve">
+    <value>Thông tin hệ thống</value>
+  </data>
+  <data name="DisplaySettings" xml:space="preserve">
+    <value>Cài đặt hiển thị</value>
+  </data>
+  <data name="ModerationConfiguration" xml:space="preserve">
+    <value>Cài đặt kiểm duyệt</value>
+  </data>
+  <data name="BannedKeywordsList" xml:space="preserve">
+    <value>Từ khóa cấm</value>
+  </data>
+  <data name="AccountSecurity" xml:space="preserve">
+    <value>Bảo mật tài khoản</value>
+  </data>
+  <data name="SessionSecurity" xml:space="preserve">
+    <value>Bảo mật phiên đăng nhập</value>
+  </data>
+  <data name="SiteNameRequired" xml:space="preserve">
+    <value>Tên website không được để trống.</value>
+  </data>
+  <data name="ReportsPerPageRange" xml:space="preserve">
+    <value>Số báo cáo mỗi trang phải từ 1 đến 100.</value>
+  </data>
+  <data name="MinPasswordLengthRange" xml:space="preserve">
+    <value>Độ dài mật khẩu tối thiểu phải từ 6 đến 20 ký tự.</value>
+  </data>
+  <data name="SettingsSaveError" xml:space="preserve">
+    <value>Lỗi khi lưu cài đặt hệ thống.</value>
+  </data>
+  <data name="SettingsUpdateError" xml:space="preserve">
+    <value>Lỗi khi cập nhật cài đặt</value>
+  </data>
+  <data name="SystemSettings" xml:space="preserve">
+    <value>Cài đặt hệ thống</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Trang chủ</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Báo cáo</value>
+  </data>
+  <data name="MyReports" xml:space="preserve">
+    <value>Báo cáo của tôi</value>
+  </data>
+  <data name="Messages" xml:space="preserve">
+    <value>Tin nhắn</value>
+  </data>
+  <data name="Admin" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="UserManagement" xml:space="preserve">
+    <value>Quản lý người dùng</value>
+  </data>
+  <data name="ReportManagement" xml:space="preserve">
+    <value>Quản lý báo cáo</value>
+  </data>
+  <data name="ContentModeration" xml:space="preserve">
+    <value>Kiểm duyệt nội dung</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Thống kê</value>
+  </data>
+  <data name="AllRightsReserved" xml:space="preserve">
+    <value>Tất cả quyền được bảo lưu.</value>
+  </data>
+  <data name="RecentPetReports" xml:space="preserve">
+    <value>Báo cáo thú cưng gần đây</value>
+  </data>
+  <data name="Searching" xml:space="preserve">
+    <value>Đang tìm kiếm</value>
+  </data>
+  <data name="Closed" xml:space="preserve">
+    <value>Đã đóng</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Chờ duyệt</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Bị từ chối</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Đã duyệt</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Chi tiết</value>
+  </data>
+  <data name="NoReportsYet" xml:space="preserve">
+    <value>Chưa có báo cáo nào</value>
+  </data>
+  <data name="BeFirstToCreateReport" xml:space="preserve">
+    <value>Hãy là người đầu tiên tạo báo cáo về thú cưng.</value>
+  </data>
+  <data name="CreateNewReport" xml:space="preserve">
+    <value>Tạo báo cáo mới</value>
+  </data>
+</root> 

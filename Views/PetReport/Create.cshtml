@@ -9,7 +9,10 @@
         <div class="card shadow-sm p-4">
             <h2 class="text-center mb-4">Tạo báo cáo mới</h2>
             <form asp-action="Create" method="post" enctype="multipart/form-data">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <div asp-validation-summary="All" class="alert alert-danger"></div>
+                }
                 <div class="mb-3">
                     <label asp-for="Type" class="form-label fw-semibold">Loại báo cáo</label>
                     <select asp-for="Type" class="form-control">
@@ -52,6 +55,23 @@
                     <textarea asp-for="Description" class="form-control" rows="3"></textarea>
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="City" class="form-label fw-semibold">Thành phố</label>
+                        <input asp-for="City" class="form-control" />
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="District" class="form-label fw-semibold">Quận/Huyện</label>
+                        <input asp-for="District" class="form-control" />
+                        <span asp-validation-for="District" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="LostOrFoundDate" class="form-label fw-semibold">Ngày mất/tìm thấy</label>
+                    <input asp-for="LostOrFoundDate" type="date" class="form-control" />
+                    <span asp-validation-for="LostOrFoundDate" class="text-danger"></span>
+                </div>
                 <div class="mb-3">
                     <label asp-for="ContactName" class="form-label fw-semibold">Tên liên hệ</label>
                     <input asp-for="ContactName" class="form-control" />
@@ -61,6 +81,11 @@
                     <label asp-for="ContactPhone" class="form-label fw-semibold">Số điện thoại</label>
                     <input asp-for="ContactPhone" class="form-control" />
                     <span asp-validation-for="ContactPhone" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="ContactEmail" class="form-label fw-semibold">Email liên hệ</label>
+                    <input asp-for="ContactEmail" class="form-control" />
+                    <span asp-validation-for="ContactEmail" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-semibold">Hình ảnh thú cưng</label>

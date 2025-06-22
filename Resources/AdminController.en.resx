@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="SiteNameRequired" xml:space="preserve">
+    <value>Site name cannot be empty.</value>
+  </data>
+  <data name="ReportsPerPageRange" xml:space="preserve">
+    <value>Reports per page must be between 1 and 100.</value>
+  </data>
+  <data name="MinPasswordLengthRange" xml:space="preserve">
+    <value>Minimum password length must be between 6 and 20 characters.</value>
+  </data>
+  <data name="SettingsSaved" xml:space="preserve">
+    <value>System settings updated successfully!</value>
+  </data>
+  <data name="SettingsSaveError" xml:space="preserve">
+    <value>Error saving system settings.</value>
+  </data>
+  <data name="SettingsUpdateError" xml:space="preserve">
+    <value>Error updating settings</value>
+  </data>
+</root> 

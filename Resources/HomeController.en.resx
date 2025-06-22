@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Welcome" xml:space="preserve">
+    <value>Welcome to PetStore</value>
+  </data>
+  <data name="HomeDescription" xml:space="preserve">
+    <value>Pet search and recovery system</value>
+  </data>
+  <data name="Privacy" xml:space="preserve">
+    <value>Privacy Policy</value>
+  </data>
+  <data name="PrivacyDescription" xml:space="preserve">
+    <value>Information about our privacy policy</value>
+  </data>
+  <data name="SearchPets" xml:space="preserve">
+    <value>Search Pets</value>
+  </data>
+  <data name="ReportLostPet" xml:space="preserve">
+    <value>Report Lost Pet</value>
+  </data>
+  <data name="ReportFoundPet" xml:space="preserve">
+    <value>Report Found Pet</value>
+  </data>
+  <data name="ViewReports" xml:space="preserve">
+    <value>View Reports</value>
+  </data>
+  <data name="NoReports" xml:space="preserve">
+    <value>No pet reports found.</value>
+  </data>
+  <data name="ErrorFetchingReports" xml:space="preserve">
+    <value>Error fetching reports</value>
+  </data>
+</root> 

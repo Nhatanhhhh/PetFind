@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Messages" xml:space="preserve">
+    <value>Messages</value>
+  </data>
+  <data name="Conversations" xml:space="preserve">
+    <value>Conversations</value>
+  </data>
+  <data name="Chat" xml:space="preserve">
+    <value>Chat</value>
+  </data>
+  <data name="SendMessage" xml:space="preserve">
+    <value>Send Message</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="NoMessages" xml:space="preserve">
+    <value>No messages found.</value>
+  </data>
+  <data name="NoConversations" xml:space="preserve">
+    <value>No conversations found.</value>
+  </data>
+  <data name="MessageSent" xml:space="preserve">
+    <value>Message sent successfully.</value>
+  </data>
+  <data name="MessageDeleted" xml:space="preserve">
+    <value>Message deleted successfully.</value>
+  </data>
+  <data name="With" xml:space="preserve">
+    <value>with</value>
+  </data>
+  <data name="LastMessage" xml:space="preserve">
+    <value>Last Message</value>
+  </data>
+  <data name="Unread" xml:space="preserve">
+    <value>Unread</value>
+  </data>
+</root> 

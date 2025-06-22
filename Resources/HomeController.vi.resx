@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="Welcome" xml:space="preserve">
+    <value>Chào mừng đến với PetStore</value>
+  </data>
+  <data name="HomeDescription" xml:space="preserve">
+    <value>Hệ thống tìm kiếm và phục hồi thú cưng bị mất</value>
+  </data>
+  <data name="Privacy" xml:space="preserve">
+    <value>Chính sách bảo mật</value>
+  </data>
+  <data name="PrivacyDescription" xml:space="preserve">
+    <value>Thông tin về chính sách bảo mật của chúng tôi</value>
+  </data>
+  <data name="SearchPets" xml:space="preserve">
+    <value>Tìm kiếm thú cưng</value>
+  </data>
+  <data name="ReportLostPet" xml:space="preserve">
+    <value>Báo cáo thú cưng bị mất</value>
+  </data>
+  <data name="ReportFoundPet" xml:space="preserve">
+    <value>Báo cáo thú cưng được tìm thấy</value>
+  </data>
+  <data name="ViewReports" xml:space="preserve">
+    <value>Xem báo cáo</value>
+  </data>
+  <data name="NoReports" xml:space="preserve">
+    <value>Không tìm thấy báo cáo thú cưng nào.</value>
+  </data>
+  <data name="ErrorFetchingReports" xml:space="preserve">
+    <value>Lỗi khi tải báo cáo</value>
+  </data>
+</root>

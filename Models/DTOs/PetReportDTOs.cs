@@ -19,7 +19,7 @@ namespace PetStore.Models.DTOs
         public string City { get; set; } = string.Empty;
         public double? Latitude { get; set; }
         public double? Longitude { get; set; }
-        public DateTime? LostOrFoundDate { get; set; } // Nullable to handle potential nulls
+        public DateTime? LostOrFoundDate { get; set; }
         public DateTime CreatedAt { get; set; }
         public PetReportStatus Status { get; set; }
         public string? ImageUrl { get; set; }
