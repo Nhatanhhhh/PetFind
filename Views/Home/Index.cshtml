@@ -45,10 +45,18 @@
                     </h4>
                 </div>
                 <div class="card-body">
-                    @if (Model != null && Model.Any())
+                    @{
+                        var approvedReports = Model?.Where(report =>
+                            (report.Moderations != null && report.Moderations.Any() &&
+                                report.Moderations.OrderByDescending(m => m.CreatedAt).First().Status.ToString() == "Approved")
+                            ||
+                            (report.Moderations == null || !report.Moderations.Any()) && (report.Status.ToString() != "Pending" && report.Status.ToString() != "Rejected")
+                        ).ToList();
+                    }
+                    @if (approvedReports != null && approvedReports.Any())
                     {
                         <div class="row g-4">
-                            @foreach (var report in Model)
+                            @foreach (var report in approvedReports)
                             {
                                 <div class="col-lg-4 col-md-6">
                                     <div class="card h-100 shadow-sm border-0">
